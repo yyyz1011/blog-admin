@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import { ElConfigProvider } from "element-plus";
-import { ElConfig } from "@/typing/common";
+import { ElConfig } from "@/typings/common";
 
 const elConfig: ElConfig = reactive({
   zIndex: 3000,
