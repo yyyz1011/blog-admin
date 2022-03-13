@@ -9,7 +9,7 @@
   >
     <div class="admin-side-menu--header">
       <el-icon class="admin-logo"><IconStarFilled /></el-icon>
-      <span class="admin-title">YYZ工具箱</span>
+      <span class="admin-title">{{ AdminName }}</span>
     </div>
     <el-menu-item
       v-for="item in SideNavList"
@@ -28,6 +28,7 @@
 <script lang="ts" setup>
 import { SideNavList } from "@/constants/router";
 import { StarFilled as IconStarFilled } from "@element-plus/icons-vue";
+import { AdminName } from "@/constants/common";
 
 function handleGoBlog() {
   console.log("TODO 跳转博客");
@@ -40,7 +41,7 @@ function handleGoBlog() {
   position: relative;
   &--header {
     color: $text-color-reverse;
-    font-size: $font-size;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
