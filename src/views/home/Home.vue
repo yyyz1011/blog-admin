@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>首页</h1>
+    <SummaryCard></SummaryCard>
   </div>
 </template>
