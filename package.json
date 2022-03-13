@@ -4,16 +4,29 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "start": "kill-port 3920 && concurrently -k \"vite\" \"wait-on tcp:3920 && npm-run-all watch\"",
+    "watch": "tsc-watch --noClear -p tsconfig.e.json --onSuccess \"npm-run-all start:ect\"",
+    "start:ect": "cross-env NODE_ENV=development electron ./output/build/main.js",
+    "preview": "cross-env NODE_ENV=production electron ./output/build/main.js"
   },
   "dependencies": {
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
+    "@vue/compiler-sfc": "^3.2.31",
+    "ant-design-vue": "^2.2.8",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
+    "kill-port": "^1.6.1",
+    "npm-run-all": "^4.1.5",
+    "tsc-watch": "^4.6.2",
     "typescript": "^4.5.4",
+    "unplugin-vue-components": "^0.18.0",
     "vite": "^2.8.0",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^0.29.8",
+    "wait-on": "^6.0.1"
   }
 }
