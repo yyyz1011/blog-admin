@@ -11,6 +11,8 @@ function createWindow() {
   const Window = new BrowserWindow({
     minWidth: 1120,
     minHeight: 645,
+    maxWidth: 1120,
+    maxHeight: 645,
     width: 1120, // * 指定启动app时的默认窗口尺寸
     height: 645, // * 指定启动app时的默认窗口尺寸
     frame: true, // * app边框(包括关闭,全屏,最小化按钮的导航栏) @false: 隐藏
