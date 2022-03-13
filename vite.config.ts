@@ -12,6 +12,13 @@ export default defineConfig({
       resolvers: [AntDesignVueResolver()],
     }),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import 'src/assets/css/variable.scss';`,
+      },
+    },
+  },
   server: {
     strictPort: true,
     host: true,
