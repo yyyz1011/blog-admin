@@ -10,7 +10,8 @@
     "preview": "cross-env NODE_ENV=production electron ./output/build/main.js"
   },
   "dependencies": {
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
