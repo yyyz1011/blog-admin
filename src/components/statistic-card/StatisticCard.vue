@@ -24,7 +24,7 @@ const formatAmount = formatPrice(props.amount);
   user-select: none;
 }
 .title {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: lighter;
   color: $text-color-grey;
 }

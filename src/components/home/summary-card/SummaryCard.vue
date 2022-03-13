@@ -88,9 +88,9 @@ const summaryInfoList: Array<SummaryInfoListItem> = reactive([
     .summary-background {
       position: absolute;
       right: 0;
-      bottom: 0;
-      height: 120px;
-      opacity: 0.3;
+      bottom: -70px;
+      height: 200px;
+      opacity: 0.5;
     }
   }
 }
