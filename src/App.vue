@@ -3,10 +3,7 @@
 </template>
 
 <script setup lang="ts">
+console.log(1);
 </script>
 
-<style scoped lang="scss">
-h1 {
-  background: $background;
-}
-</style>
+<style scoped lang="scss"></style>
