@@ -4,8 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CardPanel: typeof import('./src/components/card-panel/CardPanel.vue')['default']
     ClockCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -13,10 +15,14 @@ declare module 'vue' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     SideNav: typeof import('./src/components/side-nav/SideNav.vue')['default']
     Statistic: typeof import('./src/components/tatistic-card/Statistic.vue')['default']
     StatisticCard: typeof import('./src/components/statistic-card/StatisticCard.vue')['default']
     SummaryCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
+    TodoCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
+    UserCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
   }
 }
 

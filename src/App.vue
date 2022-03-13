@@ -20,7 +20,7 @@ import { ElConfig } from "@/typings/extraPlugin";
 
 const elConfig: ElConfig = reactive({
   zIndex: 3000,
-  size: "small",
+  size: "default",
 });
 </script>
 

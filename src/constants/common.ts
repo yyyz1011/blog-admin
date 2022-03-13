@@ -1,1 +1,1 @@
-export const AdminName = "YYZ工具箱";
+export const AdminName = "YYZ工作台";
