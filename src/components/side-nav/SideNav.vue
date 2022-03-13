@@ -7,6 +7,10 @@
     text-color="#FDEDDD"
     :router="true"
   >
+    <div class="admin-side-menu--header">
+      <el-icon class="admin-logo"><IconStarFilled /></el-icon>
+      <span class="admin-title">YYZ工具箱</span>
+    </div>
     <el-menu-item
       v-for="item in SideNavList"
       :key="item.path"
@@ -15,14 +19,63 @@
       <el-icon><component :is="item.icon" /></el-icon>
       <span>{{ item.name }}</span>
     </el-menu-item>
+    <div class="blog-link-card" @click="handleGoBlog">
+      <img class="blog-link-card--img" src="../../assets/img/leaf.svg" />
+      <span class="blog-link-card--title">Leaf Blog</span>
+    </div>
   </el-menu>
 </template>
-<script lang="ts" setup>
+<script lang="ts" setup> 
 import { SideNavList } from "@/constants/router";
+import { StarFilled as IconStarFilled } from "@element-plus/icons-vue";
+
+function handleGoBlog() {
+  console.log("TODO 跳转博客");
+}
 </script>
 
 <style scoped lang="scss">
 .admin-side-menu {
   height: 100%;
+  position: relative;
+  &--header {
+    color: $text-color-reverse;
+    font-size: $font-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    user-select: none;
+    padding: 24px 0;
+    .admin-logo {
+      margin-right: 8px;
+    }
+  }
+  .blog-link-card {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100px;
+    width: 80%;
+    background: $background-white;
+    border-radius: $border-radius-normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: translateX(-50%) translateY(-4px);
+    }
+    &--img {
+      height: 40px;
+      margin-right: 4px;
+    }
+    &--title {
+      font-size: 20px;
+    }
+  }
 }
 </style>
