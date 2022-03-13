@@ -1,9 +1,5 @@
 <template>
   <div>
-    <ElButton>hello world</ElButton>
+    <el-button type="primary">hello world</el-button>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ElButton } from "element-plus";
-</script>

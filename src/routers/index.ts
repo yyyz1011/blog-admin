@@ -1,21 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-
-interface RoutesItem {
-  path: string;
-  name: string;
-  component: any;
-}
-const routes: Array<RoutesItem> = [
-  {
-    path: "/",
-    name: "home",
-    component: () => import("../views/home/Home.vue"),
-  },
-];
+import { RoutesList } from "@/constants/router";
 
 const router = createRouter({
   history: createWebHistory("/"),
-  routes,
+  routes: RoutesList,
 });
 
 router.beforeEach((guard) => {
@@ -23,7 +11,7 @@ router.beforeEach((guard) => {
 });
 
 router.onError((handler) => {
-  console.log("router error:", handler);
+  console.error("router error:", handler);
 });
 
 export default router;
