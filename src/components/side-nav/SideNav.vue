@@ -25,7 +25,7 @@
     </div>
   </el-menu>
 </template>
-<script lang="ts" setup> 
+<script lang="ts" setup>
 import { SideNavList } from "@/constants/router";
 import { StarFilled as IconStarFilled } from "@element-plus/icons-vue";
 
@@ -75,6 +75,7 @@ function handleGoBlog() {
     }
     &--title {
       font-size: 20px;
+      color: $text-color-primary;
     }
   }
 }
