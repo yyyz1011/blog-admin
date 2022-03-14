@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ArticleCard: typeof import('./src/components/home/article-card/ArticleCard.vue')['default']
     CardPanel: typeof import('./src/components/card-panel/CardPanel.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -23,6 +24,7 @@ declare module 'vue' {
     StatisticCard: typeof import('./src/components/statistic-card/StatisticCard.vue')['default']
     SummaryCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
     TodoCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
+    ToolCard: typeof import('./src/components/home/tool-card/ToolCard.vue')['default']
   }
 }
 

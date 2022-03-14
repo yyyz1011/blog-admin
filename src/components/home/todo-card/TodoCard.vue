@@ -81,27 +81,22 @@ function getTodoList() {
   const MOCK_TodoList: Array<TodoListItem> = [
     {
       id: "1",
-      content: "完成TODO部分的内容",
+      content: "创建TODO需要一个dialog",
       end_time: "1647192787776",
     },
     {
       id: "1123",
-      content: "ElMessage消息通知有问题，看一下electron",
+      content: "home-article部分",
       end_time: "1647192787776",
     },
     {
       id: "1123123",
-      content: "完成TODO部分的内容",
+      content: "home-tool部分",
       end_time: "1647192787776",
     },
     {
       id: "112111111111113",
-      content: "ElMessage消息通知有问题，看一下electron",
-      end_time: "1647192787776",
-    },
-    {
-      id: "11231123",
-      content: "完成TODO部分的内容",
+      content: "需要设计一下toolcard里工具的样式嘿嘿嘿",
       end_time: "1647192787776",
     },
   ];
