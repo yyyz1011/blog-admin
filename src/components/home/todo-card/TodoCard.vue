@@ -47,7 +47,7 @@
                   type="text"
                   @click="handleFinishTODO"
                 >
-                  完成
+                  搞定
                 </el-button>
               </div>
             </el-carousel-item>
@@ -85,29 +85,34 @@ function getTodoList() {
       end_time: "1647192787776",
     },
     {
-      id: "1123",
+      id: "2",
       content: "home-article部分",
       end_time: "1647192787776",
     },
     {
-      id: "1123123",
+      id: "3",
       content: "home-tool部分",
       end_time: "1647192787776",
     },
     {
-      id: "112111111111113",
+      id: "4",
       content: "需要设计一下toolcard里工具的样式嘿嘿嘿",
       end_time: "1647192787776",
     },
     {
-      id: "1121111111111131",
+      id: "5",
       content: "electron新开页面有问题",
       end_time: "1647192787776",
     },
     {
-      id: "112831",
+      id: "6",
       content: "sidenav增加密码记录哭",
       end_time: "1647192787776",
+    },
+    {
+      id: "7",
+      content: "https://github.com/ObuchiYuki/DevToysMac 毕设工具参考",
+      end_time: "123123123",
     },
   ];
   for (let i = 0; i < MOCK_TodoList.length; i += 3) {
