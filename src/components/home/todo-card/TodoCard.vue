@@ -67,10 +67,24 @@ const todoList: Array<TodoListItem> = reactive([
 
 function handleCreateTODO() {
   console.log("TODO 创建TODO");
+  ElMessage({
+    type: "info",
+    message: "记得完成设置的TODO哈，敲脑阔",
+    duration: 3000,
+    grouping: true,
+    center: true,
+  });
 }
 
 function handleFinishTODO() {
   console.log("TODO 完成TODO");
+  ElMessage({
+    type: "success",
+    message: "恭喜恭喜，TODO-1",
+    duration: 3000,
+    grouping: true,
+    center: true,
+  });
 }
 </script>
 
