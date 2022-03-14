@@ -52,7 +52,16 @@ export function createAppMenu() {
       submenu: [
         {
           id: "2-1",
+          label: "刷新页面",
+          accelerator: "F5",
+          click(m, window, e) {
+            window?.reload();
+          },
+        },
+        {
+          id: "2-2",
           label: "开发者工具",
+          accelerator: "F12",
           click(m, window, e) {
             window?.webContents.openDevTools();
           },

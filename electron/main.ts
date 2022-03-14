@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from "electron";
+import { app, BrowserWindow, Menu, globalShortcut } from "electron";
 import { onNavbar } from "./utils/navbar";
 import { onAppMenu, createAppMenu } from "./utils/menu";
 import { onContextMenu } from "./utils/contextMenu";
@@ -13,6 +13,7 @@ app.on("ready", () => {
   createWindow(); // 创建窗口
   // 通常在 macOS 上，当点击 dock 中的应用程序图标时，如果没有其他打开的窗口，那么程序会重新创建一个窗口。
   Menu.setApplicationMenu(createAppMenu());
+
   app.on(
     "activate",
     () => BrowserWindow.getAllWindows().length === 0 && createWindow()
