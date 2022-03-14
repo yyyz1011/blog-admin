@@ -5,6 +5,7 @@ import {
   PictureFilled as IconPictureFilled,
   Flag as IconFlag,
   Tools as IconTools,
+  Key as IconKey,
 } from "@element-plus/icons-vue";
 
 export const RoutesList: Array<RoutesItem> = [
@@ -33,6 +34,11 @@ export const RoutesList: Array<RoutesItem> = [
     name: "tool",
     component: () => import("@/views/tool/Tool.vue"),
   },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () => import("@/views/privacy/Privacy.vue"),
+  },
 ];
 
 export const SideNavList: Array<SideRoutesItem> = [
@@ -60,5 +66,10 @@ export const SideNavList: Array<SideRoutesItem> = [
     path: "/tool",
     name: "工具",
     icon: IconTools,
+  },
+  {
+    path: "/privacy",
+    name: "隐私",
+    icon: IconKey,
   },
 ];

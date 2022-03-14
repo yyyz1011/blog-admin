@@ -39,7 +39,6 @@ function handleGoBlog() {
 }
 
 function handleGoGithub() {
-  // window.open("https://github.com/yyyz1011");
   window.open(
     "https://github.com/yyyz1011",
     "",
@@ -73,7 +72,7 @@ function handleGoGithub() {
   }
   .blog-link-card {
     position: absolute;
-    bottom: 100px;
+    bottom: 85px;
     left: 50%;
     transform: translateX(-50%);
     height: 60px;
@@ -102,7 +101,7 @@ function handleGoGithub() {
 
 .github-link-card {
   position: absolute;
-  bottom: 30px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   height: 60px;
