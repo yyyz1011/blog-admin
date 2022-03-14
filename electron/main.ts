@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, globalShortcut } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 import { onNavbar } from "./utils/navbar";
 import { onAppMenu, createAppMenu } from "./utils/menu";
 import { onContextMenu } from "./utils/contextMenu";
