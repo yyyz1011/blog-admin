@@ -21,7 +21,7 @@
               <div>
                 截止日期：{{ dayjs(item.end_time).format("YYYY-MM-DD") }}
               </div>
-              <el-tooltip effect="dark" :content="item.content">
+              <el-tooltip effect="dark" :content="item.content" placement="top">
                 <div class="content">{{ item.content }}</div>
               </el-tooltip>
             </div>
