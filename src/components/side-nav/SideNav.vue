@@ -39,7 +39,18 @@ function handleGoBlog() {
 }
 
 function handleGoGithub() {
-  window.open("https://github.com/yyyz1011");
+  // window.open("https://github.com/yyyz1011");
+  window.open(
+    "https://github.com/yyyz1011",
+    "",
+    `
+        width=1920,
+        height=1080,
+        backgroundColor=#dedede,
+        nodeIntegration=1,
+        contextIsolation=1
+      `
+  );
 }
 </script>
 
