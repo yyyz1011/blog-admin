@@ -109,7 +109,6 @@ function getTodoList() {
     todoList.push(MOCK_TodoList.slice(i, i + 3));
   }
   allPage.value = Math.ceil(MOCK_TodoList.length / 3);
-  console.log(todoList);
 }
 
 function handleCarouselChange(payload: Event) {
