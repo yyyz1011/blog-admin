@@ -10,6 +10,8 @@ declare module 'vue' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElMain: typeof import('element-plus/es')['ElMain']
@@ -22,6 +24,7 @@ declare module 'vue' {
     StatisticCard: typeof import('./src/components/statistic-card/StatisticCard.vue')['default']
     SummaryCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
     TodoCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
+    TodoItem: typeof import('./src/components/home/todo-card/TodoItem.vue')['default']
     UserCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
   }
 }

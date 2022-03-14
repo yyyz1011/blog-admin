@@ -9,6 +9,6 @@
 .home-header{
   display: flex;
   justify-content: space-between;
-  height: 260px;
+  height: 270px;
 }
 </style>
