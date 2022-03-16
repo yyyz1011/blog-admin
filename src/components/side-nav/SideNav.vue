@@ -72,10 +72,10 @@ function handleGoGithub() {
   }
   .blog-link-card {
     position: absolute;
-    bottom: 85px;
+    bottom: 65px;
     left: 50%;
     transform: translateX(-50%);
-    height: 60px;
+    height: 30px;
     width: 80%;
     background: $background-white;
     border-radius: $border-radius-normal;
@@ -89,11 +89,11 @@ function handleGoGithub() {
       transform: translateX(-50%) translateY(-4px);
     }
     &--img {
-      height: 40px;
+      height: 25px;
       margin-right: 4px;
     }
     &--title {
-      font-size: 20px;
+      font-size: 15px;
       color: $text-color-primary;
     }
   }
@@ -104,7 +104,7 @@ function handleGoGithub() {
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
-  height: 60px;
+  height: 30px;
   width: 80%;
   background: $background-white;
   border-radius: $border-radius-normal;
@@ -118,12 +118,12 @@ function handleGoGithub() {
     transform: translateX(-50%) translateY(-4px);
   }
   &--img {
-    height: 40px;
+    height: 30px;
     margin-right: 4px;
   }
   &--title {
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 15px;
     color: $text-color-primary;
   }
 }

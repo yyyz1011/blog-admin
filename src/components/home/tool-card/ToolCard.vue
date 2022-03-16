@@ -4,16 +4,25 @@
       <el-icon><IconChatLineSquare /></el-icon>
       <span class="title-text">置顶工具箱</span>
     </template>
-    <template #second-title> 便携工具插件 </template>
+    <template #second-title>便携工具插件</template>
+    <template #operate>
+      <el-button type="text" @click="handleGoTool">进入工具箱</el-button>
+    </template>
     <template #content>
-      <div class="content">
-      </div>
+      <div class="content"></div>
     </template>
   </CardPanel>
 </template>
 
 <script setup lang="ts">
 import { ChatLineSquare as IconChatLineSquare } from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+function handleGoTool() {
+  router.push("/tool");
+}
 </script>
 
 <style scoped lang="scss">

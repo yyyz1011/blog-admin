@@ -6,6 +6,7 @@ import {
   Flag as IconFlag,
   Tools as IconTools,
   Key as IconKey,
+  Message as IconMessage,
 } from "@element-plus/icons-vue";
 
 export const RoutesList: Array<RoutesItem> = [
@@ -23,6 +24,11 @@ export const RoutesList: Array<RoutesItem> = [
     path: "/picture-list",
     name: "picture-list",
     component: () => import("@/views/picture/PictureList.vue"),
+  },
+  {
+    path: "/message",
+    name: "message",
+    component: () => import("@/views/message/Message.vue"),
   },
   {
     path: "/log",
@@ -56,6 +62,11 @@ export const SideNavList: Array<SideRoutesItem> = [
     path: "/picture-list",
     name: "图库",
     icon: IconPictureFilled,
+  },
+  {
+    path: "/message",
+    name: "留言板",
+    icon: IconMessage,
   },
   {
     path: "/log",
