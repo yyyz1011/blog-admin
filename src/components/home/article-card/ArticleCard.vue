@@ -76,6 +76,10 @@ const initChartsOption = () => {
         data: articleTypeList,
       },
     ],
+    tooltip: {
+      show: true,
+      valueFormatter: (value: string) => value + "篇",
+    },
   });
 };
 
@@ -92,13 +96,15 @@ onMounted(() => {
 .article-charts {
   width: 400px;
   height: 120px;
+  position: relative;
+  z-index: 10;
 }
 .article-background {
   position: absolute;
   right: -40px;
   bottom: -50px;
   height: 200px;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 .content {
   position: relative;
