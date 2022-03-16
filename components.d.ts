@@ -12,6 +12,7 @@ declare module 'vue' {
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
     ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
@@ -23,6 +24,7 @@ declare module 'vue' {
     SummaryCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
     TodoCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
     ToolCard: typeof import('./src/components/home/tool-card/ToolCard.vue')['default']
+    ToolItem: typeof import('./src/components/tool/ToolItem.vue')['default']
   }
 }
 
