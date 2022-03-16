@@ -9,6 +9,7 @@
     <ToolItem title="JSON 格式化程序"></ToolItem>
     <ToolItem title="二维码生成"></ToolItem>
   </div>
+  <img class="tool-background" src="../../assets/img/tool_background.svg" />
 </template>
 
 
@@ -26,6 +27,17 @@
   flex-wrap: wrap;
   ::v-deep .tool-item-wrapper {
     margin: 8px;
+  }
+}
+.tool-background {
+  width: 250px;
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  opacity: 1;
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: 0;
   }
 }
 </style>
