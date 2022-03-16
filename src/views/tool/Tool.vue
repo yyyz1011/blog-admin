@@ -1,5 +1,10 @@
 <template>
-  <div class="tool-header">工具集</div>
+  <HeaderNav>
+    <template #icon>
+      <el-icon><IconTools /></el-icon>
+    </template>
+    <template #title> 工具 </template>
+  </HeaderNav>
   <div class="tool-wrapper">
     <ToolItem title="时间戳转化"></ToolItem>
     <ToolItem title="二维码生成"></ToolItem>
@@ -12,14 +17,11 @@
   <img class="tool-background" src="../../assets/img/tool_background.svg" />
 </template>
 
+<script setup lang="ts">
+import { Tools as IconTools } from "@element-plus/icons-vue";
+</script>
 
 <style scoped lang="scss">
-.tool-header {
-  @include font-title();
-  padding-bottom: 8px;
-  margin-bottom: 16px;
-  border-bottom: 2px solid $text-color-primary;
-}
 .tool-wrapper {
   display: flex;
   justify-content: flex-start;

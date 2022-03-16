@@ -7,7 +7,7 @@
     text-color="#FDEDDD"
     :router="true"
   >
-    <div class="admin-side-menu--header">
+    <div class="admin-side-menu--header" @click="router.push('/')">
       <el-icon class="admin-logo"><IconStarFilled /></el-icon>
       <span class="admin-title">{{ AdminName }}</span>
     </div>
@@ -33,6 +33,9 @@
 import { SideNavList } from "@/constants/router";
 import { StarFilled as IconStarFilled } from "@element-plus/icons-vue";
 import { AdminName } from "@/constants/common";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 function handleGoBlog() {
   console.log("TODO 跳转博客");
@@ -63,7 +66,7 @@ function handleGoGithub() {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: default;
+    cursor: pointer;
     user-select: none;
     padding: 24px 0;
     .admin-logo {
