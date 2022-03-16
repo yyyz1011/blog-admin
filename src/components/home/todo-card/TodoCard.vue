@@ -17,6 +17,7 @@
             arrow="never"
             :initial-index="currentCarousel"
             @change="handleCarouselChange"
+            v-loading="loading"
           >
             <el-carousel-item
               v-for="index in allPage"
@@ -24,10 +25,13 @@
             >
               <div
                 class="todo-list--item"
-                v-for="(todoInfo, index) in todoList[currentCarousel]"
+                v-for="(todoInfo, cIndex) in todoList.slice(
+                  currentCarousel * 3,
+                  currentCarousel * 3 + 3
+                )"
                 :key="todoInfo.id"
               >
-                <div class="index">{{ currentCarousel * 3 + index + 1 }}</div>
+                <div class="index">{{ currentCarousel * 3 + cIndex + 1 }}</div>
                 <div>
                   <div>
                     截止日期：{{
@@ -45,7 +49,7 @@
                 <el-button
                   class="operate"
                   type="text"
-                  @click="handleFinishTODO"
+                  @click="handleFinishTODO(todoInfo)"
                 >
                   搞定
                 </el-button>
@@ -70,11 +74,13 @@ interface TodoListItem {
   content: string;
   end_time: string;
 }
+let loading: Ref<boolean> = ref(false);
 let todoList: any = reactive([]);
 let currentCarousel: Ref<number> = ref(0);
 let allPage: Ref<number> = ref(0);
 
 getTodoList();
+getCarouselPage();
 
 function getTodoList() {
   // TODO MOCK数据需要replace
@@ -115,10 +121,11 @@ function getTodoList() {
       end_time: "123123123",
     },
   ];
-  for (let i = 0; i < MOCK_TodoList.length; i += 3) {
-    todoList.push(MOCK_TodoList.slice(i, i + 3));
-  }
-  allPage.value = Math.ceil(MOCK_TodoList.length / 3);
+  todoList = MOCK_TodoList;
+}
+
+function getCarouselPage() {
+  allPage.value = Math.ceil(todoList.length / 3);
 }
 
 function handleCarouselChange(payload: Event) {
@@ -137,16 +144,24 @@ function handleCreateTODO() {
   });
 }
 
-function handleFinishTODO() {
-  console.log("TODO 完成TODO");
-  getTodoList();
-  ElMessage({
-    type: "success",
-    message: "恭喜恭喜，TODO-1",
-    duration: 3000,
-    grouping: true,
-    center: true,
-  });
+function handleFinishTODO(todoInfo: TodoListItem) {
+  loading.value = true;
+  const delIndex = todoList.findIndex(
+    (item: TodoListItem) => item.id === todoInfo.id
+  );
+  setTimeout(() => {
+    // TODO 模拟删除todo接口
+    todoList.splice(delIndex, 1);
+    getCarouselPage();
+    loading.value = false;
+    ElMessage({
+      type: "success",
+      message: "恭喜恭喜，TODO-1",
+      duration: 3000,
+      grouping: true,
+      center: true,
+    });
+  }, 1000);
 }
 </script>
 
