@@ -7,7 +7,7 @@ const router = createRouter({
 });
 
 router.beforeEach((guard) => {
-  console.log("beforeEach", guard.name);
+  console.log("[Router Enter]", guard.name);
 });
 
 router.onError((handler) => {
