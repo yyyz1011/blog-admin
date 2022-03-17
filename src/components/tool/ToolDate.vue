@@ -3,7 +3,7 @@
     <template #dialogContent>
       <div class="date-content">
         <div class="date-type">
-          <span class="date-type--title">时间戳单位:</span>
+          <span class="date-type--title">时间戳单位</span>
           <el-radio-group v-model="dateType" size="large">
             <el-radio-button
               v-for="item in dateTypeList"
@@ -15,11 +15,11 @@
           </el-radio-group>
         </div>
         <div class="date-format">
-          <span class="date-format--title">时间戳格式:</span>
+          <span class="date-format--title">时间戳格式</span>
           <el-input class="date-format--input" v-model="dateFormat"></el-input>
         </div>
         <div class="date-change">
-          <span class="change-title">时间戳:</span>
+          <span class="change-title">时间戳</span>
           <el-input class="change-input" v-model="timestamp2Time"></el-input>
           <el-button
             class="change-operate"
@@ -31,7 +31,7 @@
           <span class="change-result">{{ timestamp2TimeResult }}</span>
         </div>
         <div class="date-change">
-          <span class="change-title">时间:</span>
+          <span class="change-title">时间</span>
           <el-input class="change-input" v-model="time2Timestamp"></el-input>
           <el-button
             class="change-operate"
