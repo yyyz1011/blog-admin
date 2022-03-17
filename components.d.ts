@@ -15,9 +15,12 @@ declare module 'vue' {
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     HeaderNav: typeof import('./src/components/header-nav/HeaderNav.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
@@ -26,6 +29,7 @@ declare module 'vue' {
     SummaryCard: typeof import('./src/components/home/summary-card/SummaryCard.vue')['default']
     TodoCard: typeof import('./src/components/home/todo-card/TodoCard.vue')['default']
     ToolCard: typeof import('./src/components/home/tool-card/ToolCard.vue')['default']
+    ToolDate: typeof import('./src/components/tool/ToolDate.vue')['default']
     ToolItem: typeof import('./src/components/tool/ToolItem.vue')['default']
   }
 }
