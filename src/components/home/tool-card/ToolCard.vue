@@ -9,7 +9,9 @@
       <el-button type="text" @click="handleGoTool">进入工具箱</el-button>
     </template>
     <template #content>
-      <div class="content"></div>
+      <div class="content">
+        <ToolDate></ToolDate>
+      </div>
     </template>
   </CardPanel>
 </template>
