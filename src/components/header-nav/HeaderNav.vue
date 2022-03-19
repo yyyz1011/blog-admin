@@ -1,9 +1,14 @@
 <template>
   <div class="header">
-    <slot name="icon"></slot>
-    <span class="title">
-      <slot name="title"></slot>
-    </span>
+    <div class="header-left">
+      <slot name="icon"></slot>
+      <span class="title">
+        <slot name="title"></slot>
+      </span>
+    </div>
+    <div class="header-right">
+      <slot name="operate"></slot>
+    </div>
   </div>
 </template>
 
@@ -23,9 +28,12 @@
   user-select: none;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   .title {
     margin-left: 8px;
+  }
+  .operate {
+    float: right;
   }
 }
 </style>
