@@ -17,7 +17,14 @@
       >
         <template #label>
           <span class="label">{{ item.label }}</span>
-          <el-tag hit size="small" class="tag">{{ item.amount }}</el-tag>
+          <el-tag
+            hit
+            size="small"
+            :type="currentTab === item.id ? '' : 'info'"
+            class="tag"
+          >
+            {{ item.amount }}
+          </el-tag>
         </template>
       </el-tab-pane>
     </el-tabs>
