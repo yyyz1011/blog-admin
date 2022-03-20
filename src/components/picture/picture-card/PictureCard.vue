@@ -84,7 +84,7 @@ function handleDelPicture() {
     border-radius: 0 16px 16px 0;
     overflow: hidden;
     .title {
-      font-size: 18px;
+      @include font-second-title();
       margin: 14px 0 8px 8px;
       display: flex;
       justify-content: flex-start;

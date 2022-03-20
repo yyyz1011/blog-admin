@@ -28,7 +28,9 @@
         </template>
       </el-tab-pane>
     </el-tabs>
-    <div>{{ currentTab }} hello</div>
+    <div class="article-list">
+      <ArticleListCard />
+    </div>
   </div>
 </template>
 
@@ -64,7 +66,7 @@ function getArticleSummary() {
 }
 function getArticleList(id?: string) {
   const articleTypeId = id ?? currentTab.value;
-  console.log(articleTypeId);
+  console.log("TODO 获取笔记列表");
 }
 
 watch(currentTab, (val) => {
@@ -90,5 +92,8 @@ onMounted(() => {
     margin-left: 4px;
     width: 50px;
   }
+}
+.article-list {
+  width: 100%;
 }
 </style>

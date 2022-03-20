@@ -5,6 +5,7 @@ $background-white: #ffffff;
 $background-black: #000000;
 
 $font-size-title: 20px;
+$font-size-second-title: 18px;
 $font-size: 14px;
 
 $text-color-black: #000000;
@@ -20,5 +21,12 @@ $border-radius-large: 16px;
   font-size: $font-size-title;
   color: $text-color-primary;
   font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+@mixin font-second-title {
+  font-size: $font-size-second-title;
+  color: $text-color-primary;
+  font-weight: lighter;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
