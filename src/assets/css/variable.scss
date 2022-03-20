@@ -1,3 +1,6 @@
+$primary-color: #45465e;
+$primary-color-hover: #64658a;
+
 $background-white: #ffffff;
 $background-black: #000000;
 
@@ -5,7 +8,7 @@ $font-size-title: 20px;
 $font-size: 14px;
 
 $text-color-black: #000000;
-$text-color-primary: #45465e;
+$text-color-primary: $primary-color;
 $text-color-reverse: #fdeddd;
 $text-color-grey: #808080;
 $text-color-white: #ffffff;
@@ -19,6 +22,3 @@ $border-radius-large: 16px;
   font-weight: bold;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-
-$primary-color: #45465e;
-$primary-color-hover: #64658a;
