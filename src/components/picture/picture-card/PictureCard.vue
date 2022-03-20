@@ -54,10 +54,10 @@ function handleDelPicture() {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 100px;
+    height: 50px;
     transition: all 0.3s ease;
     &:hover {
-      height: 200px;
+      height: 150px;
     }
   }
   &--img {
@@ -69,9 +69,10 @@ function handleDelPicture() {
     background: rgba(255, 255, 255, 0.6);
     flex: 1;
     border-radius: 0 16px 16px 0;
+    overflow: hidden;
     .title {
       font-size: 18px;
-      margin: 8px 0 8px 8px;
+      margin: 14px 0 8px 8px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
