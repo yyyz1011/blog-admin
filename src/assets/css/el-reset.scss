@@ -14,3 +14,11 @@
     }
   }
 }
+
+.el-radio-group {
+  .is-active {
+    .el-radio-button__inner {
+      background: $primary-color !important;
+    }
+  }
+}
