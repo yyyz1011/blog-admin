@@ -150,14 +150,14 @@ function handleExceed(files: any) {
   upload.value.handleStart(files[0]);
 }
 function handleSuccess(files: any) {
-  form.uploadImg = files;
+  form.value.uploadImg = files;
 }
 
 function handleClose() {
   emit("close");
 }
 async function handleUpload() {
-  if (!form.uploadImg) {
+  if (!form.value.uploadImg) {
     ElMessage.error("上传图片不能为空，请检查~");
     return;
   }
@@ -167,6 +167,7 @@ async function handleUpload() {
     ElMessage.error("校验出错，请检查~");
     return;
   }
+  ElMessage.success("图片更新成功");
   emit("success");
 }
 </script>

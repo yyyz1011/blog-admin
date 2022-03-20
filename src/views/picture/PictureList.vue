@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import { Ref, ref, onMounted } from "vue";
+import { ElMessage } from "element-plus";
 import { PictureFilled as IconPictureFilled } from "@element-plus/icons-vue";
 import { getFreeImg } from "@/networks";
 
@@ -50,6 +51,7 @@ function getPictureList() {
   });
 }
 function handleDelPicture(id: string) {
+  ElMessage.success("删除成功");
   console.log("删除图片，id是", id);
 }
 
