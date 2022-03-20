@@ -12,16 +12,28 @@
       <div class="desc">{{ pictureInfo.desc }}</div>
     </div>
     <div class="picture-card--operate">
-      <div><el-button type="info">编辑</el-button></div>
+      <div>
+        <el-button type="info" @click="dialogUploadVisible = true">
+          编辑
+        </el-button>
+      </div>
       <div>
         <el-button type="danger" @click="handleDelPicture">删除</el-button>
       </div>
     </div>
   </el-card>
+  <DialogPictureUpload
+    :visible="dialogUploadVisible"
+    title="编辑图片"
+    confirm-text="完成编辑"
+    :is-edit="true"
+    :picture-info="pictureInfo"
+    @close="dialogUploadVisible = false"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, Ref, ref } from "vue";
 import dayjs from "dayjs";
 const emit = defineEmits(["delete"]);
 const props = defineProps({
@@ -31,6 +43,7 @@ const props = defineProps({
   },
 });
 
+let dialogUploadVisible: Ref<boolean> = ref(false);
 let pictureInfo = computed(() => props.info);
 let cardStyle = computed(() => {
   const info = pictureInfo.value;

@@ -35,6 +35,7 @@
             list-type="picture"
             :on-exceed="handleExceed"
             :on-success="handleSuccess"
+            :file-list="fileList"
           >
             <el-icon class="el-icon--upload"><IconUploadFilled /></el-icon>
             <div class="el-upload__text">拖动图片或者<em>点击上传</em></div>
@@ -75,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { UploadFilled as IconUploadFilled } from "@element-plus/icons-vue";
 
@@ -95,6 +96,14 @@ const props = defineProps({
     type: String,
     default: "创建",
   },
+  isEdit: {
+    type: Boolean,
+    default: false,
+  },
+  pictureInfo: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const dialogVisible = computed(() => props.visible);
@@ -102,7 +111,7 @@ const dialogTitle = computed(() => props.title);
 const dialogConfirmText = computed(() => props.confirmText);
 const formPicture = ref();
 const upload = ref();
-const form = reactive({
+let form = ref({
   title: "",
   uploadImg: "",
   region: "",
@@ -115,6 +124,25 @@ const rulesForm = reactive({
   modifyTime: [
     { required: true, message: "拍摄时间不能为空", trigger: "blur" },
   ],
+});
+let fileList: Ref<any> = ref([]);
+
+function initPictureInfo() {
+  const { isEdit, pictureInfo } = props;
+  if (!isEdit) return;
+  const { title, region, url, desc, modify_time } = pictureInfo;
+  fileList.value = [{ url }];
+  form.value = {
+    title,
+    uploadImg: url,
+    region,
+    modifyTime: modify_time,
+    desc,
+  };
+}
+
+onMounted(() => {
+  initPictureInfo();
 });
 
 function handleExceed(files: any) {
