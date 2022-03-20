@@ -1,0 +1,16 @@
+@import "./variable.scss";
+
+.el-button {
+  &--primary {
+    background-color: $primary-color !important;
+    &:hover {
+      background-color: $primary-color-hover !important;
+    }
+  }
+  &--text {
+    color: $primary-color !important;
+    &:hover {
+      color: $primary-color-hover !important;
+    }
+  }
+}
