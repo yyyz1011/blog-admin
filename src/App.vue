@@ -1,5 +1,9 @@
 <template>
-  <ElConfigProvider :size="elConfig.size" :z-index="elConfig.zIndex">
+  <ElConfigProvider
+    :size="elConfig.size"
+    :z-index="elConfig.zIndex"
+    :locale="elConfig.locale"
+  >
     <div class="admin-layout">
       <el-container>
         <el-aside width="200px">
@@ -17,10 +21,12 @@
 import { reactive } from "vue";
 import { ElConfigProvider } from "element-plus";
 import { ElConfig } from "@/typings/extraPlugin";
+import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 const elConfig: ElConfig = reactive({
   zIndex: 3000,
   size: "default",
+  locale: zhCn,
 });
 </script>
 

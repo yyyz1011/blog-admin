@@ -5,7 +5,9 @@
     </template>
     <template #title> 图库 </template>
     <template #operate>
-      <el-button type="text">上传</el-button>
+      <el-button type="primary" @click="dialogUploadVisible = true">
+        上传图片
+      </el-button>
     </template>
   </HeaderNav>
   <div v-if="pictureList.length > 0">
@@ -13,12 +15,18 @@
       <PictureCard :info="item" @delete="handleDelPicture"></PictureCard>
     </template>
   </div>
+  <DialogPictureUpload
+    :visible="dialogUploadVisible"
+    @close="dialogUploadVisible = false"
+  />
 </template>
 
 <script setup lang="ts">
 import { Ref, ref, onMounted } from "vue";
 import { PictureFilled as IconPictureFilled } from "@element-plus/icons-vue";
 import { getFreeImg } from "@/networks";
+
+let dialogUploadVisible: Ref<boolean> = ref(false);
 
 interface PictureListItem {
   id: string;
@@ -41,7 +49,6 @@ function getPictureList() {
     };
   });
 }
-
 function handleDelPicture(id: string) {
   console.log("删除图片，id是", id);
 }
