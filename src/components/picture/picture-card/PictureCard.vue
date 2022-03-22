@@ -71,6 +71,9 @@ function handleDelPicture() {
     transition: all 0.3s ease;
     &:hover {
       height: 150px;
+      .desc {
+        opacity: 1;
+      }
     }
   }
   &--img {
@@ -97,6 +100,8 @@ function handleDelPicture() {
       font-size: $font-size;
       margin-left: 8px;
       overflow: hidden;
+      transition: all 0.3s ease;
+      opacity: 0;
     }
   }
   &--operate {
