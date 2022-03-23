@@ -5,7 +5,7 @@
     </template>
     <template #title> 笔记 </template>
     <template #operate>
-      <el-button type="primary"> 上传笔记 </el-button>
+      <el-button type="primary" @click="visible = true"> 上传笔记 </el-button>
     </template>
   </HeaderNav>
   <div class="article-wrapper">
@@ -32,11 +32,17 @@
       <ArticleListCard />
     </div>
   </div>
+  <DialogArticleUpload
+    :dialog-visible="visible"
+    @close="visible = false"
+  ></DialogArticleUpload>
 </template>
 
 <script setup lang="ts">
 import { ref, Ref, onMounted, watch } from "vue";
 import { List as IconList } from "@element-plus/icons-vue";
+
+let visible = ref(false);
 
 let currentTab: Ref<string> = ref("-1");
 interface ArticleSummaryItem {
