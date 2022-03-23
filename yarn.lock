@@ -135,6 +135,14 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
+"@jsdawn/vue3-tinymce@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@jsdawn/vue3-tinymce/-/vue3-tinymce-1.1.7.tgz#ee6d1d16f636ffd9bd592233a50515bd56ca8968"
+  integrity sha512-KimLq9g8GSxx8nq29C4qY1Qp8KV1D3Wu5BQhqv65vE0plB9DCMxOBOGMKp4Iq0XIk7PvtqNAIBx4Ik2EBm5PtQ==
+  dependencies:
+    vue "^3.2.6"
+    vue-router "4"
+
 "@malept/cross-spawn-promise@^1.1.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@malept/cross-spawn-promise/-/cross-spawn-promise-1.1.1.tgz#504af200af6b98e198bce768bc1730c6936ae01d"
@@ -3772,7 +3780,7 @@ vue-demi@*:
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.1.tgz#f7e18efbecffd11ab069d1472d7a06e319b4174c"
   integrity sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==
 
-vue-router@^4.0.14:
+vue-router@4, vue-router@^4.0.14:
   version "4.0.14"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.0.14.tgz#ce2028c1c5c33e30c7287950c973f397fce1bd65"
   integrity sha512-wAO6zF9zxA3u+7AkMPqw9LjoUCjSxfFvINQj3E/DceTt6uEz1XZLraDhdg2EYmvVwTBSGlLYsUw8bDmx0754Mw==
@@ -3794,7 +3802,7 @@ vue-types@^3.0.0:
   dependencies:
     is-plain-object "3.0.1"
 
-vue@^3.2.25:
+vue@^3.2.25, vue@^3.2.6:
   version "3.2.31"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.31.tgz#e0c49924335e9f188352816788a4cca10f817ce6"
   integrity sha512-odT3W2tcffTiQCy57nOT93INw1auq5lYLLYtWpPYQQYQOOdHiqFct9Xhna6GJ+pJQaF67yZABraH47oywkJgFw==
