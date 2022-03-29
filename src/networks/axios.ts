@@ -1,8 +1,6 @@
 import axios, {AxiosRequestConfig, Method} from "axios";
 import {ElMessage} from "element-plus";
-import {Token} from "@/constants/common";
-
-const baseUrl = "http://127.0.0.1:3000/api";
+import {baseUrl, Token} from "@/constants/common";
 
 // 定义接口
 interface PendingType {

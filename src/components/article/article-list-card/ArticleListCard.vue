@@ -31,7 +31,7 @@
       :is-edit="true"
       :dialog-visible="visible"
       dialog-title="编辑笔记"
-      dialog-confirm-text="编辑"
+      dialog-confirm-text="完成编辑"
       :article-info="articleInfo"
       @close="visible = false"
       @success="uploadArticleSuccess"
@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
 import {computed, Ref, ref} from "vue";
-import dayjs from "dayjs";
 import Api from "@/networks/api";
 import {ElMessage} from "element-plus";
 

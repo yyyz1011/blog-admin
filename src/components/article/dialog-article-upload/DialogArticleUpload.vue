@@ -99,10 +99,10 @@
 </template>
 
 <script setup lang="ts">
-import {ref, reactive, Ref, watch} from "vue";
+import {reactive, ref, Ref} from "vue";
 import {ElMessage} from "element-plus";
-import {UploadFilled as IconUploadFilled} from "@element-plus/icons-vue";
 import Api from "@/networks/api";
+import {baseUrl, Token} from "@/constants/common";
 // @ts-ignore
 import Vue3Tinymce from "@jsdawn/vue3-tinymce";
 
@@ -167,11 +167,13 @@ let editorSetting = reactive({
   link_title: false,
   default_link_target: "_blank",
   content_style: "body{font-size: 16px}",
-  // 自定义 图片上传模式
   custom_images_upload: true,
-  images_upload_url: "https://jsonplaceholder.typicode.com/posts/",
-  custom_images_upload_callback: (res: any) => res.url,
-  custom_images_upload_param: {id: "xxxx01", age: 18},
+  images_upload_url: `${baseUrl}/c/upload`,
+  custom_images_upload_header: {
+    "token": sessionStorage.getItem(Token)
+  },
+  images_upload_credentials: false,
+  custom_images_upload_callback: (res: any) => res.data.url,
   language: "zh_CN",
   language_url:
       "https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js",
