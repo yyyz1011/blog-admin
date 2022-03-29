@@ -36,6 +36,7 @@ declare module 'vue' {
     ElUpload: typeof import('element-plus/es')['ElUpload']
     HeaderNav: typeof import('./src/components/header-nav/HeaderNav.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
+    NoData: typeof import('./src/components/no-data/NoData.vue')['default']
     PictureCard: typeof import('./src/components/picture/picture-card/PictureCard.vue')['default']
     SideNav: typeof import('./src/components/side-nav/SideNav.vue')['default']
     StatisticCard: typeof import('./src/components/statistic-card/StatisticCard.vue')['default']

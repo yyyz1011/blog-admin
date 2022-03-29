@@ -19,7 +19,7 @@ export class Request {
 
   static post = (url: string, params?: any) => {
     return new Promise((resolve, reject) => {
-      axios.post(url, qs.stringify(params)).then(res => {
+      axios.post(url, params).then(res => {
         resolve(res);
       }).catch(err => {
         reject(err);
