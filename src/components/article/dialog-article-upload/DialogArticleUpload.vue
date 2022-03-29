@@ -28,7 +28,7 @@
               maxlength="20"
           />
         </el-form-item>
-        <el-form-item label="笔记分类" prop="type">
+        <el-form-item label="笔记分类" prop="atid">
           <el-select
               v-model="articleForm.atid"
               placeholder="请选择笔记分类"
