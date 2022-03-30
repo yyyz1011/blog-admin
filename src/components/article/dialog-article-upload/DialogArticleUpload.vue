@@ -1,10 +1,10 @@
 <template>
   <el-dialog
       v-model="dialogVisible"
-      destroy-on-close
-      fullscreen
       :before-close="handleClose"
       append-to-body
+      destroy-on-close
+      fullscreen
   >
     <template #title>
       <span class="title">
@@ -21,19 +21,19 @@
       >
         <el-form-item label="笔记标题" prop="title">
           <el-input
-              class="input"
-              placeholder="请输入笔记标题"
               v-model="articleForm.title"
-              show-word-limit
+              class="input"
               maxlength="20"
+              placeholder="请输入笔记标题"
+              show-word-limit
           />
         </el-form-item>
         <el-form-item label="笔记分类" prop="atid">
           <el-select
               v-model="articleForm.atid"
-              placeholder="请选择笔记分类"
-              filterable
               clearable
+              filterable
+              placeholder="请选择笔记分类"
           >
             <el-option
                 v-for="item in articleTypeList"
@@ -43,22 +43,21 @@
             />
           </el-select>
           <el-popover
+              :width="200"
               placement="right"
               title="创建笔记分类"
-              :width="200"
               trigger="click"
           >
             <div class="add-type-popover">
               <el-input
-                  class="add-type-input"
                   v-model="addTypeInput"
+                  class="add-type-input"
                   placeholder="请输入新的分类"
               ></el-input>
               <div class="add-type-button">
                 <el-button type="primary" @click="handleAddType"
                 >创建
-                </el-button
-                >
+                </el-button>
               </div>
             </div>
             <template #reference>
@@ -68,14 +67,14 @@
         </el-form-item>
         <el-form-item label="笔记简介" prop="desc">
           <el-input
-              class="textarea"
-              placeholder="请输入笔记简介"
               v-model="articleForm.desc"
-              type="textarea"
-              rows="3"
+              class="textarea"
               clearable
-              show-word-limit
               maxlength="100"
+              placeholder="请输入笔记简介"
+              rows="3"
+              show-word-limit
+              type="textarea"
           />
         </el-form-item>
         <el-form-item label="笔记内容" prop="content">
@@ -126,8 +125,8 @@ const props = defineProps({
   },
   articleInfo: {
     type: [Object, null],
-    default: null
-  }
+    default: null,
+  },
 });
 
 let formRef = ref(null);
@@ -170,7 +169,7 @@ let editorSetting = reactive({
   custom_images_upload: true,
   images_upload_url: `${baseUrl}/c/upload`,
   custom_images_upload_header: {
-    "token": sessionStorage.getItem(Token)
+    token: sessionStorage.getItem(Token),
   },
   images_upload_credentials: false,
   custom_images_upload_callback: (res: any) => res.data.url,
@@ -201,7 +200,7 @@ function handleClose() {
 async function handleAddType() {
   try {
     const data = await Api.Article.createArticleType({
-      label: addTypeInput.value
+      label: addTypeInput.value,
     });
     ElMessage.success(`创建成功 atid:${data.atid}`);
     await getArticleTypeList();
@@ -226,7 +225,7 @@ async function handleUpload() {
         desc,
         content,
         aid: props.articleInfo.aid,
-        create_time: props.articleInfo.create_time
+        create_time: props.articleInfo.create_time,
       });
       ElMessage.success(`编辑成功 aid:${data.aid}`);
       emit("success");
@@ -239,7 +238,7 @@ async function handleUpload() {
         title,
         atid,
         desc,
-        content
+        content,
       });
       ElMessage.success(`创建成功 aid:${data.aid}`);
       emit("success");
@@ -253,7 +252,10 @@ function initArticleForm() {
   if (!props.isEdit) return;
   const {title, atid, desc, content} = props.articleInfo;
   articleForm.value = {
-    title, atid, desc, content
+    title,
+    atid,
+    desc,
+    content,
   };
 }
 </script>

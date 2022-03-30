@@ -56,7 +56,7 @@ let visible: Ref<boolean> = ref(false);
 const articleInfo = computed(() => props.info);
 
 function handleGoArticleDetail() {
-  console.log("TODO 跳转笔记详情页");
+  console.log("TODO", articleInfo);
 }
 
 function uploadArticleSuccess() {
