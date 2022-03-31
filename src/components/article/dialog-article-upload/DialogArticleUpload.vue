@@ -210,6 +210,7 @@ async function handleUpload() {
     await (formRef.value as any).validate();
   } catch {
     ElMessage.error("校验失败");
+    return;
   }
   const { title, atid, desc, content } = articleForm.value;
   if (props.isEdit) {
