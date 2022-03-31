@@ -2,7 +2,7 @@
   <HeaderNav>
     <template #icon>
       <el-icon>
-        <IconList/>
+        <IconList />
       </el-icon>
     </template>
     <template #title> 笔记</template>
@@ -13,17 +13,17 @@
   <div class="article-wrapper">
     <el-tabs tab-position="left" class="tabs" v-model="currentTab">
       <el-tab-pane
-          v-for="item in articleSummaryList"
-          :key="item.atid"
-          :name="item.atid"
+        v-for="item in articleSummaryList"
+        :key="item.atid"
+        :name="item.atid"
       >
         <template #label>
           <span class="label">{{ item.label }}</span>
           <el-tag
-              hit
-              size="small"
-              :type="currentTab === item.id ? '' : 'info'"
-              class="tag"
+            hit
+            size="small"
+            :type="currentTab === item.id ? '' : 'info'"
+            class="tag"
           >
             {{ item.amount }}
           </el-tag>
@@ -32,8 +32,12 @@
     </el-tabs>
     <div class="article-list" v-loading="loading">
       <template v-if="articleList.length">
-        <div v-for="item in articleList" :key="item.aid" class="article-list--card">
-          <ArticleListCard :info='item' @success="uploadArticleSuccess"/>
+        <div
+          v-for="item in articleList"
+          :key="item.aid"
+          class="article-list--card"
+        >
+          <ArticleListCard :info="item" @success="uploadArticleSuccess" />
         </div>
         <div class="article-bottom">已经到底啦</div>
       </template>
@@ -45,18 +49,18 @@
     </div>
   </div>
   <DialogArticleUpload
-      v-if="visible"
-      :dialog-visible="visible"
-      @close="visible = false"
-      @success="uploadArticleSuccess"
+    v-if="visible"
+    :dialog-visible="visible"
+    @close="visible = false"
+    @success="uploadArticleSuccess"
   ></DialogArticleUpload>
 </template>
 
 <script setup lang="ts">
-import {ref, Ref, onMounted, watch} from "vue";
-import {List as IconList} from "@element-plus/icons-vue";
+import { ref, Ref, onMounted, watch } from "vue";
+import { List as IconList } from "@element-plus/icons-vue";
 import Api from "@/networks/api";
-import {ElMessage} from "element-plus";
+import { ElMessage } from "element-plus";
 
 let visible = ref(false);
 
@@ -95,12 +99,12 @@ async function getArticleSummary() {
       {
         atid: "0",
         label: "全部",
-        amount: 40
+        amount: 40,
       },
-      ...data.map(item => ({
+      ...data.map((item) => ({
         ...item,
-        amount: 10
-      }))
+        amount: 10,
+      })),
     ];
   } catch (err) {
     ElMessage.error(err.message);

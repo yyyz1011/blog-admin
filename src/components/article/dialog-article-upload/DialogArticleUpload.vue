@@ -1,62 +1,62 @@
 <template>
   <el-dialog
-      v-model="dialogVisible"
-      :before-close="handleClose"
-      append-to-body
-      destroy-on-close
-      fullscreen
+    v-model="dialogVisible"
+    :before-close="handleClose"
+    append-to-body
+    destroy-on-close
+    fullscreen
   >
     <template #title>
       <span class="title">
-        <el-icon class="el-icon--upload"><IconUploadFilled/></el-icon>
+        <el-icon class="el-icon--upload"><IconUploadFilled /></el-icon>
         {{ dialogTitle }}
       </span>
     </template>
     <div class="article-wrapper">
       <el-form
-          ref="formRef"
-          :model="articleForm"
-          :rules="fromRules"
-          label-width="120px"
+        ref="formRef"
+        :model="articleForm"
+        :rules="fromRules"
+        label-width="120px"
       >
         <el-form-item label="笔记标题" prop="title">
           <el-input
-              v-model="articleForm.title"
-              class="input"
-              maxlength="20"
-              placeholder="请输入笔记标题"
-              show-word-limit
+            v-model="articleForm.title"
+            class="input"
+            maxlength="20"
+            placeholder="请输入笔记标题"
+            show-word-limit
           />
         </el-form-item>
         <el-form-item label="笔记分类" prop="atid">
           <el-select
-              v-model="articleForm.atid"
-              clearable
-              filterable
-              placeholder="请选择笔记分类"
+            v-model="articleForm.atid"
+            clearable
+            filterable
+            placeholder="请选择笔记分类"
           >
             <el-option
-                v-for="item in articleTypeList"
-                :key="item.atid"
-                :label="item.label"
-                :value="item.atid"
+              v-for="item in articleTypeList"
+              :key="item.atid"
+              :label="item.label"
+              :value="item.atid"
             />
           </el-select>
           <el-popover
-              :width="200"
-              placement="right"
-              title="创建笔记分类"
-              trigger="click"
+            :width="200"
+            placement="right"
+            title="创建笔记分类"
+            trigger="click"
           >
             <div class="add-type-popover">
               <el-input
-                  v-model="addTypeInput"
-                  class="add-type-input"
-                  placeholder="请输入新的分类"
+                v-model="addTypeInput"
+                class="add-type-input"
+                placeholder="请输入新的分类"
               ></el-input>
               <div class="add-type-button">
                 <el-button type="primary" @click="handleAddType"
-                >创建
+                  >创建
                 </el-button>
               </div>
             </div>
@@ -67,21 +67,21 @@
         </el-form-item>
         <el-form-item label="笔记简介" prop="desc">
           <el-input
-              v-model="articleForm.desc"
-              class="textarea"
-              clearable
-              maxlength="100"
-              placeholder="请输入笔记简介"
-              rows="3"
-              show-word-limit
-              type="textarea"
+            v-model="articleForm.desc"
+            class="textarea"
+            clearable
+            maxlength="100"
+            placeholder="请输入笔记简介"
+            rows="3"
+            show-word-limit
+            type="textarea"
           />
         </el-form-item>
         <el-form-item label="笔记内容" prop="content">
           <Vue3Tinymce
-              v-model="articleForm.content"
-              :setting="editorSetting"
-              @change="handleChangeEditorContent"
+            v-model="articleForm.content"
+            :setting="editorSetting"
+            @change="handleChangeEditorContent"
           ></Vue3Tinymce>
         </el-form-item>
       </el-form>
@@ -98,10 +98,10 @@
 </template>
 
 <script setup lang="ts">
-import {reactive, ref, Ref} from "vue";
-import {ElMessage} from "element-plus";
+import { reactive, ref, Ref } from "vue";
+import { ElMessage } from "element-plus";
 import Api from "@/networks/api";
-import {baseUrl, Token} from "@/constants/common";
+import { baseUrl, Token } from "@/constants/common";
 // @ts-ignore
 import Vue3Tinymce from "@jsdawn/vue3-tinymce";
 
@@ -138,10 +138,10 @@ let articleForm = ref({
 });
 let addTypeInput = ref("");
 let fromRules = reactive({
-  title: [{required: true, message: "请输入笔记标题", trigger: "blur"}],
-  atid: [{required: true, message: "请选择笔记分类", trigger: "blur"}],
-  desc: [{required: true, message: "请选择笔记简介", trigger: "blur"}],
-  content: [{required: true, message: "请输入笔记内容", trigger: "blur"}],
+  title: [{ required: true, message: "请输入笔记标题", trigger: "blur" }],
+  atid: [{ required: true, message: "请选择笔记分类", trigger: "blur" }],
+  desc: [{ required: true, message: "请选择笔记简介", trigger: "blur" }],
+  content: [{ required: true, message: "请输入笔记内容", trigger: "blur" }],
 });
 
 interface ArticleTypeItem {
@@ -159,7 +159,7 @@ let editorSetting = reactive({
   width: 900,
   height: 400,
   toolbar:
-      "bold italic underline h1 h2 h3 h4 blockquote codesample numlist bullist link image",
+    "bold italic underline h1 h2 h3 h4 blockquote codesample numlist bullist link image",
   plugins: "codesample link image lists",
   toolbar_mode: "sliding",
   nonbreaking_force_tab: true,
@@ -175,7 +175,7 @@ let editorSetting = reactive({
   custom_images_upload_callback: (res: any) => res.data.url,
   language: "zh_CN",
   language_url:
-      "https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js",
+    "https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js",
 });
 
 getArticleTypeList();
@@ -216,7 +216,7 @@ async function handleUpload() {
   } catch {
     ElMessage.error("校验失败");
   }
-  const {title, atid, desc, content} = articleForm.value;
+  const { title, atid, desc, content } = articleForm.value;
   if (props.isEdit) {
     try {
       const data = await Api.Article.updateArticle({
@@ -250,7 +250,7 @@ async function handleUpload() {
 
 function initArticleForm() {
   if (!props.isEdit) return;
-  const {title, atid, desc, content} = props.articleInfo;
+  const { title, atid, desc, content } = props.articleInfo;
   articleForm.value = {
     title,
     atid,

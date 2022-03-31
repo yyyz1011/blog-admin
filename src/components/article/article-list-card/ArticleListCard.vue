@@ -1,5 +1,5 @@
 <template>
-  <el-card class="article-list-card" @click="handleGoArticleDetail">
+  <el-card class="article-list-card">
     <template #header>
       <div class="card-header">
         <div class="title">
@@ -7,8 +7,11 @@
           <el-tag class="tag">{{ articleInfo.atLabel }}</el-tag>
         </div>
         <div class="operate">
-          <el-button type="primary" @click.stop="visible = true">编辑</el-button>
-          <el-button @click.stop="handleDelete">删除</el-button>
+          <el-button type="primary" @click="visibleContent = true">
+            查看
+          </el-button>
+          <el-button type="primary" @click="visible = true">编辑</el-button>
+          <el-button @click="handleDelete">删除</el-button>
         </div>
       </div>
     </template>
@@ -21,43 +24,52 @@
           <span class="like">点赞量:{{ articleInfo.article_like }}</span>
           <span class="vv">阅读量:{{ articleInfo.article_vv }}</span>
         </div>
-        <div class="modify-time">修改时间:{{ dayjs(Number(articleInfo.modify_time)).format("YYYY-MM-DD HH:mm") }}</div>
+        <div class="modify-time">
+          修改时间:{{
+            dayjs(Number(articleInfo.modify_time)).format("YYYY-MM-DD HH:mm")
+          }}
+        </div>
       </div>
     </div>
   </el-card>
+  <!--  查看笔记-->
+  <DialogArticleContent
+    v-if="visibleContent"
+    :dialog-visible="visibleContent"
+    :article-info="articleInfo"
+    @close="visibleContent = false"
+  />
   <!--编辑笔记-->
   <DialogArticleUpload
-      v-if="visible"
-      :is-edit="true"
-      :dialog-visible="visible"
-      dialog-title="编辑笔记"
-      dialog-confirm-text="完成编辑"
-      :article-info="articleInfo"
-      @close="visible = false"
-      @success="uploadArticleSuccess"
-  ></DialogArticleUpload>
+    v-if="visible"
+    :is-edit="true"
+    :dialog-visible="visible"
+    dialog-title="编辑笔记"
+    dialog-confirm-text="完成编辑"
+    :article-info="articleInfo"
+    @close="visible = false"
+    @success="uploadArticleSuccess"
+  />
 </template>
 
 <script setup lang="ts">
-import {computed, Ref, ref} from "vue";
+import { computed, Ref, ref } from "vue";
 import Api from "@/networks/api";
-import {ElMessage} from "element-plus";
+import { ElMessage } from "element-plus";
+import dayjs from "dayjs";
 
 const props = defineProps({
   info: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 const emit = defineEmits(["success"]);
 
 let visible: Ref<boolean> = ref(false);
+let visibleContent = ref(false);
 
-const articleInfo = computed(() => props.info);
-
-function handleGoArticleDetail() {
-  console.log("TODO", articleInfo);
-}
+let articleInfo = computed(() => props.info);
 
 function uploadArticleSuccess() {
   visible.value = false;
@@ -67,7 +79,7 @@ function uploadArticleSuccess() {
 async function handleDelete() {
   try {
     const data = await Api.Article.delArticle({
-      aid: props.info.aid
+      aid: props.info.aid,
     });
     emit("success");
     ElMessage.success(`删除成功 aid:${data.aid}`);
