@@ -18,17 +18,11 @@
           阅读量：<span class="data">{{ articleVv }}</span>
         </div>
       </div>
-      <el-divider>
-        <el-icon><IconStarFilled /></el-icon>
-        笔记简介
-      </el-divider>
+      <el-divider> 笔记简介 </el-divider>
       <div class="article-desc">{{ articleDesc }}</div>
-      <el-divider>
-        <el-icon><IconStarFilled /></el-icon>
-        笔记正文
-      </el-divider>
+      <el-divider> 笔记正文 </el-divider>
       <div class="article-content">
-        <div class="article-content--content" v-html="articleContent"></div>
+        <MdEditor v-model="articleContent" previewOnly></MdEditor>
       </div>
     </div>
   </el-dialog>
@@ -37,7 +31,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import dayjs from "dayjs";
-import { StarFilled as IconStarFilled } from "@element-plus/icons-vue";
+// https://imzbf.github.io/md-editor-v3/demo/index
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
 
 const emit = defineEmits(["close"]);
 const props = defineProps({
@@ -50,8 +46,6 @@ const props = defineProps({
     type: Object,
   },
 });
-
-console.log(props.articleInfo);
 
 const articleTitle = computed(() => props.articleInfo.title);
 const modifyTime = computed(() =>

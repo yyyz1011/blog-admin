@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="dialogVisible"
-    :before-close="handleClose"
+    :before-close="() => emit('close')"
     append-to-body
     destroy-on-close
     fullscreen
@@ -78,17 +78,16 @@
           />
         </el-form-item>
         <el-form-item label="笔记内容" prop="content">
-          <Vue3Tinymce
+          <MdEditor
             v-model="articleForm.content"
-            :setting="editorSetting"
-            @change="handleChangeEditorContent"
-          ></Vue3Tinymce>
+            :onUploadImg="onUploadImg"
+          ></MdEditor>
         </el-form-item>
       </el-form>
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="handleClose">取消</el-button>
+        <el-button @click="() => emit('close')">取消</el-button>
         <el-button type="primary" @click="handleUpload">
           {{ dialogConfirmText }}
         </el-button>
@@ -102,8 +101,9 @@ import { reactive, ref, Ref } from "vue";
 import { ElMessage } from "element-plus";
 import Api from "@/networks/api";
 import { baseUrl, Token } from "@/constants/common";
-// @ts-ignore
-import Vue3Tinymce from "@jsdawn/vue3-tinymce";
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
+import axios from "axios";
 
 const emit = defineEmits(["close", "success"]);
 const props = defineProps({
@@ -147,39 +147,42 @@ let fromRules = reactive({
 interface ArticleTypeItem {
   atid: string;
   label: string;
-  amount?: string;
 }
 
 let articleTypeList: Ref<ArticleTypeItem[]> = ref([]);
 
-// https://www.tiny.cloud/docs/
-let editorSetting = reactive({
-  // 工具栏
-  menubar: false,
-  width: 900,
-  height: 400,
-  toolbar:
-    "bold italic underline h1 h2 h3 h4 blockquote codesample numlist bullist link image",
-  plugins: "codesample link image lists",
-  toolbar_mode: "sliding",
-  nonbreaking_force_tab: true,
-  link_title: false,
-  default_link_target: "_blank",
-  content_style: "body{font-size: 16px}",
-  custom_images_upload: true,
-  images_upload_url: `${baseUrl}/c/upload`,
-  custom_images_upload_header: {
-    token: sessionStorage.getItem(Token),
-  },
-  images_upload_credentials: false,
-  custom_images_upload_callback: (res: any) => res.data.url,
-  language: "zh_CN",
-  language_url:
-    "https://unpkg.com/@jsdawn/vue3-tinymce@1.1.6/dist/tinymce/langs/zh_CN.js",
-});
-
 getArticleTypeList();
 initArticleForm();
+
+async function onUploadImg(
+  files: FileList,
+  callback: (urls: string[]) => void
+) {
+  const res = await Promise.all(
+    Array.from(files).map((file) => {
+      return new Promise((rev, rej) => {
+        const form = new FormData();
+        form.append("file", file);
+
+        axios
+          .post(`${baseUrl}/c/upload`, form, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              token: sessionStorage.getItem(Token) as string,
+            },
+          })
+          .then((res) => rev(res))
+          .catch((error) => rej(error));
+      });
+    })
+  );
+
+  callback(
+    res.map((item: any) => {
+      return item.data.data.url;
+    })
+  );
+}
 
 async function getArticleTypeList() {
   try {
@@ -187,14 +190,6 @@ async function getArticleTypeList() {
   } catch (err) {
     ElMessage.error(err.message);
   }
-}
-
-function handleChangeEditorContent(val: any) {
-  // console.log(val);
-}
-
-function handleClose() {
-  emit("close");
 }
 
 async function handleAddType() {
@@ -283,25 +278,5 @@ function initArticleForm() {
   .add-type {
     margin-left: 8px;
   }
-}
-</style>
-
-<style lang="scss">
-.add-type-popover {
-  .add-type-button {
-    display: flex;
-    align-content: center;
-    justify-content: flex-end;
-    margin-top: 8px;
-  }
-}
-
-.tox-tinymce-aux {
-  position: absolute !important;
-  z-index: 99999 !important;
-}
-
-.tox-statusbar__branding {
-  display: none;
 }
 </style>
