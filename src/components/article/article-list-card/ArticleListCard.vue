@@ -1,5 +1,5 @@
 <template>
-  <el-card class="article-list-card">
+  <el-card class="article-list-card" @click.stop="visibleContent = true">
     <template #header>
       <div class="card-header">
         <div class="title">
@@ -7,11 +7,8 @@
           <el-tag class="tag">{{ articleInfo.atLabel }}</el-tag>
         </div>
         <div class="operate">
-          <el-button type="primary" @click="visibleContent = true">
-            查看
-          </el-button>
-          <el-button type="primary" @click="visible = true">编辑</el-button>
-          <el-button @click="handleDelete">删除</el-button>
+          <el-button type="primary" @click.stop="visible = true">编辑</el-button>
+          <el-button @click.stop="handleDelete">删除</el-button>
         </div>
       </div>
     </template>
