@@ -158,30 +158,15 @@ async function onUploadImg(
   files: FileList,
   callback: (urls: string[]) => void
 ) {
-  const res = await Promise.all(
-    Array.from(files).map((file) => {
-      return new Promise((rev, rej) => {
-        const form = new FormData();
-        form.append("file", file);
-
-        axios
-          .post(`${baseUrl}/c/upload`, form, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              token: sessionStorage.getItem(Token) as string,
-            },
-          })
-          .then((res) => rev(res))
-          .catch((error) => rej(error));
-      });
-    })
-  );
-
-  callback(
-    res.map((item: any) => {
-      return item.data.data.url;
-    })
-  );
+  const file = files[0];
+  const form = new FormData();
+  form.append("file", file);
+  try {
+    const data = await Api.Common.upload(form);
+    callback([data.url]);
+  } catch (err) {
+    ElMessage.error(err.message);
+  }
 }
 
 async function getArticleTypeList() {
