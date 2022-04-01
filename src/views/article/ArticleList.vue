@@ -19,14 +19,6 @@
       >
         <template #label>
           <span class="label">{{ item.label }}</span>
-          <el-tag
-            hit
-            size="small"
-            :type="currentTab === item.id ? '' : 'info'"
-            class="tag"
-          >
-            {{ item.amount }}
-          </el-tag>
         </template>
       </el-tab-pane>
     </el-tabs>
@@ -165,7 +157,7 @@ onMounted(async () => {
   top: 80px;
   z-index: 10;
   height: 100%;
-  width: 200px;
+  width: 100px;
 
   .tag {
     margin-left: 4px;
