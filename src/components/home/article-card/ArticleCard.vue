@@ -18,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, Ref } from "vue";
 import * as echarts from "echarts";
 import "echarts-wordcloud";
 import { ChatLineSquare as IconChatLineSquare } from "@element-plus/icons-vue";
+import Api from "@/networks/api";
 
 interface ArticleType {
   value: number;
@@ -29,22 +30,14 @@ interface ArticleType {
 }
 
 const chartRef = ref(null);
-let articleTypeList: ArticleType[] = reactive([]);
+let articleTypeList: Ref<ArticleType[]> = ref([]);
 
-const getArticleTypeList = () => {
-  articleTypeList = [
-    { value: Math.floor(Math.random() * 256), name: "Vue" },
-    { value: Math.floor(Math.random() * 256), name: "React" },
-    { value: Math.floor(Math.random() * 256), name: "Html" },
-    { value: Math.floor(Math.random() * 256), name: "Css" },
-    { value: Math.floor(Math.random() * 256), name: "Design" },
-    { value: Math.floor(Math.random() * 256), name: "随笔" },
-    { value: Math.floor(Math.random() * 256), name: "ES" },
-    { value: Math.floor(Math.random() * 256), name: "牛逼" },
-    { value: Math.floor(Math.random() * 256), name: "哇哦" },
-    { value: Math.floor(Math.random() * 256), name: "好棒哦" },
-    { value: Math.floor(Math.random() * 256), name: "哥哥厉害" },
-  ];
+const getArticleTypeList = async () => {
+  const data = await Api.Article.getArticleTypeList();
+  articleTypeList.value = data.map((item) => ({
+    value: Math.floor(Math.random() * 256),
+    name: item.label,
+  }));
 };
 
 const initChartsOption = () => {
@@ -73,7 +66,7 @@ const initChartsOption = () => {
             )`;
           },
         },
-        data: articleTypeList,
+        data: articleTypeList.value,
       },
     ],
     tooltip: {
@@ -83,8 +76,8 @@ const initChartsOption = () => {
   });
 };
 
-onMounted(() => {
-  getArticleTypeList();
+onMounted(async () => {
+  await getArticleTypeList();
   initChartsOption();
 });
 </script>
