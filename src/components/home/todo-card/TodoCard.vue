@@ -87,38 +87,23 @@ function getTodoList() {
   const MOCK_TodoList: Array<TodoListItem> = [
     {
       id: "1",
-      content: "创建TODO需要一个dialog",
+      content: "需要增加一个笔记分类统计接口",
       end_time: "1647192787776",
     },
     {
       id: "2",
-      content: "home-article部分",
+      content: "准备留言板接口",
       end_time: "1647192787776",
     },
     {
       id: "3",
-      content: "home-tool部分",
+      content: "server日志打点",
       end_time: "1647192787776",
     },
     {
       id: "4",
-      content: "需要设计一下toolcard里工具的样式嘿嘿嘿",
+      content: "增加TODO接口",
       end_time: "1647192787776",
-    },
-    {
-      id: "5",
-      content: "electron新开页面有问题",
-      end_time: "1647192787776",
-    },
-    {
-      id: "6",
-      content: "sidenav增加密码记录哭",
-      end_time: "1647192787776",
-    },
-    {
-      id: "7",
-      content: "https://github.com/ObuchiYuki/DevToysMac 毕设工具参考",
-      end_time: "123123123",
     },
   ];
   todoList = MOCK_TodoList;
