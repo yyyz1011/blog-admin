@@ -33,14 +33,17 @@
               >
                 <div class="index">{{ currentCarousel * 3 + cIndex + 1 }}</div>
                 <div>
-                  <div
-                    :class="{
-                      active: Number(todoInfo.end_time) < new Date().getTime(),
-                    }"
-                  >
+                  <div>
                     截止日期：{{
                       dayjs(Number(todoInfo.end_time)).format("YYYY-MM-DD")
                     }}
+                    <el-tag
+                      class="timeout-tag"
+                      v-if="isTimeout(todoInfo.end_time)"
+                      type="danger"
+                    >
+                      超时
+                    </el-tag>
                   </div>
                   <el-tooltip
                     effect="dark"
@@ -85,6 +88,10 @@ let allPage: Ref<number> = ref(0);
 
 getTodoList();
 getCarouselPage();
+
+function isTimeout(time: string | number) {
+  return Number(time) < new Date().getTime();
+}
 
 function getTodoList() {
   // TODO MOCK数据需要replace
@@ -184,10 +191,6 @@ function handleFinishTODO(todoInfo: TodoListItem) {
       }
     }
   }
-}
-.active {
-  font-weight: bolder;
-  color: red;
 }
 ::v-deep .el-carousel__container {
   height: 170px;

@@ -31,7 +31,7 @@ import { ChatLineSquare as IconChatLineSquare } from "@element-plus/icons-vue";
   text-align: center;
 }
 .github-summary {
-  width: 400px;
+  width: 450px;
   height: 200px;
   position: relative;
   bottom: 7px;

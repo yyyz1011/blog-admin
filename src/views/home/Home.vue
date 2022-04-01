@@ -19,6 +19,6 @@
   margin-top: 16px;
   display: flex;
   justify-content: space-between;
-  height: 250px;
+  height: 280px;
 }
 </style>
