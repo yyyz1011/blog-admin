@@ -33,9 +33,13 @@
               >
                 <div class="index">{{ currentCarousel * 3 + cIndex + 1 }}</div>
                 <div>
-                  <div>
+                  <div
+                    :class="{
+                      active: Number(todoInfo.end_time) < new Date().getTime(),
+                    }"
+                  >
                     截止日期：{{
-                      dayjs(todoInfo.end_time).format("YYYY-MM-DD")
+                      dayjs(Number(todoInfo.end_time)).format("YYYY-MM-DD")
                     }}
                   </div>
                   <el-tooltip
@@ -88,7 +92,7 @@ function getTodoList() {
     {
       id: "1",
       content: "需要增加一个笔记分类统计接口",
-      end_time: "1647192787776",
+      end_time: "16471927870776",
     },
     {
       id: "2",
@@ -180,6 +184,10 @@ function handleFinishTODO(todoInfo: TodoListItem) {
       }
     }
   }
+}
+.active {
+  font-weight: bolder;
+  color: red;
 }
 ::v-deep .el-carousel__container {
   height: 170px;
