@@ -26,3 +26,23 @@ export interface CreateArticleTypeReq {
   label: string;
 }
 
+export interface CreatePictureReq {
+  title: string;
+  region: string;
+  desc: string;
+  create_time: string;
+  picture_url: string;
+}
+
+export interface UpdatePictureReq {
+  pid: string;
+  title: string;
+  region: string;
+  desc: string;
+  create_time: string;
+  picture_url: string;
+}
+
+export interface DelPictureReq {
+  pid: string;
+}

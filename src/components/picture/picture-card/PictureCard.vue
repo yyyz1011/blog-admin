@@ -1,11 +1,11 @@
 <template>
-  <el-card class="picture-card" :style="cardStyle">
-    <img class="picture-card--img" :src="pictureInfo.url" />
+  <el-card class="picture-card">
+    <img class="picture-card--img" :src="pictureInfo.picture_url" />
     <div class="picture-card--content">
       <div class="title">
         {{ pictureInfo.title }}
         <el-tag class="tag" :hit="true" type="info">{{
-          dayjs(pictureInfo.modify_time).format("YYYY-MM-DD")
+          dayjs(Number(pictureInfo.create_time)).format("YYYY-MM-DD")
         }}</el-tag>
         <el-tag :hit="true" type="danger">{{ pictureInfo.region }}</el-tag>
       </div>
@@ -29,13 +29,14 @@
     :is-edit="true"
     :picture-info="pictureInfo"
     @close="dialogUploadVisible = false"
+    @success="updateSuccess"
   />
 </template>
 
 <script setup lang="ts">
 import { computed, Ref, ref } from "vue";
 import dayjs from "dayjs";
-const emit = defineEmits(["delete"]);
+const emit = defineEmits(["delete", "success"]);
 const props = defineProps({
   info: {
     required: true,
@@ -45,18 +46,13 @@ const props = defineProps({
 
 let dialogUploadVisible: Ref<boolean> = ref(false);
 let pictureInfo = computed(() => props.info);
-let cardStyle = computed(() => {
-  const info = pictureInfo.value;
-  return {
-    backgroundImage: `url('${info.url}')`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    objectFit: "cover",
-  };
-});
 
+function updateSuccess() {
+  dialogUploadVisible.value = false;
+  emit("success");
+}
 function handleDelPicture() {
-  emit("delete", pictureInfo.value.id);
+  emit("delete", pictureInfo.value.pid);
 }
 </script>
 
@@ -82,7 +78,7 @@ function handleDelPicture() {
   }
   &--content {
     height: 100%;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
     flex: 1;
     border-radius: 0 16px 16px 0;
     overflow: hidden;

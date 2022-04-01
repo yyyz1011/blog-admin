@@ -5,6 +5,9 @@ import {
   CreateArticleTypeReq,
   UpdateArticleReq,
   DelArticleReq,
+  CreatePictureReq,
+  UpdatePictureReq,
+  DelPictureReq,
 } from "@/networks/apiType";
 
 export default class Api {
@@ -27,5 +30,14 @@ export default class Api {
     delArticle: (params: DelArticleReq) => Request.post("/a/del", params),
     createArticleType: (params: CreateArticleTypeReq) =>
       Request.post("/at/create", params),
+  };
+
+  public static Picture = {
+    createPicture: (params: CreatePictureReq) =>
+      Request.post("/p/create", params),
+    updatePicture: (params: UpdatePictureReq) =>
+      Request.post("/p/update", params),
+    delPicture: (params: DelPictureReq) => Request.post("/p/del", params),
+    getPictureList: () => Request.get("/p/picture/list"),
   };
 }

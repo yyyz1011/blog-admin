@@ -30,7 +30,8 @@
           <el-upload
             ref="upload"
             class="upload"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            :action="uploadSetting.uploadUrl"
+            :headers="uploadSetting.headers"
             :limit="1"
             list-type="picture"
             :on-exceed="handleExceed"
@@ -48,11 +49,13 @@
             placeholder="填写拍摄城市"
           />
         </el-form-item>
-        <el-form-item label="拍摄时间" prop="modifyTime">
+        <el-form-item label="拍摄时间" prop="create_time">
           <el-date-picker
-            v-model="form.modifyTime"
+            v-model="form.create_time"
             type="date"
             placeholder="选择拍摄时间"
+            format="YYYY/MM/DD"
+            value-format="x"
           />
         </el-form-item>
         <el-form-item label="图片介绍">
@@ -76,9 +79,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, onMounted } from "vue";
+import { reactive, ref, computed, onMounted, Ref } from "vue";
 import { ElMessage } from "element-plus";
 import { UploadFilled as IconUploadFilled } from "@element-plus/icons-vue";
+import { baseUrl, Token } from "@/constants/common";
+import Api from "@/networks/api";
+import dayjs from "dayjs";
 
 const emit = defineEmits(["close", "success"]);
 const props = defineProps({
@@ -106,6 +112,13 @@ const props = defineProps({
   },
 });
 
+const uploadSetting = {
+  uploadUrl: `${baseUrl}/c/upload`,
+  headers: {
+    token: sessionStorage.getItem(Token),
+  },
+};
+
 const dialogVisible = computed(() => props.visible);
 const dialogTitle = computed(() => props.title);
 const dialogConfirmText = computed(() => props.confirmText);
@@ -113,15 +126,15 @@ const formPicture = ref();
 const upload = ref();
 let form = ref({
   title: "",
-  uploadImg: "",
+  picture_url: "",
   region: "",
-  modifyTime: "",
+  create_time: "",
   desc: "",
 });
 const rulesForm = reactive({
   title: [{ required: true, message: "图片名称不能为空", trigger: "blur" }],
   region: [{ required: true, message: "拍摄地区不能为空", trigger: "blur" }],
-  modifyTime: [
+  create_time: [
     { required: true, message: "拍摄时间不能为空", trigger: "blur" },
   ],
 });
@@ -130,13 +143,19 @@ let fileList: Ref<any> = ref([]);
 function initPictureInfo() {
   const { isEdit, pictureInfo } = props;
   if (!isEdit) return;
-  const { title, region, url, desc, modify_time } = pictureInfo;
-  fileList.value = [{ url }];
+  const {
+    title,
+    region,
+    picture_url: pictureUrl,
+    desc,
+    create_time: createTime,
+  } = pictureInfo;
+  fileList.value = [{ url: pictureUrl }];
   form.value = {
     title,
-    uploadImg: url,
+    picture_url: pictureUrl,
     region,
-    modifyTime: modify_time,
+    create_time: Number(createTime) as any,
     desc,
   };
 }
@@ -150,14 +169,14 @@ function handleExceed(files: any) {
   upload.value.handleStart(files[0]);
 }
 function handleSuccess(files: any) {
-  form.value.uploadImg = files;
+  form.value.picture_url = files.data.url;
 }
 
 function handleClose() {
   emit("close");
 }
 async function handleUpload() {
-  if (!form.value.uploadImg) {
+  if (!form.value.picture_url) {
     ElMessage.error("上传图片不能为空，请检查~");
     return;
   }
@@ -167,8 +186,35 @@ async function handleUpload() {
     ElMessage.error("校验出错，请检查~");
     return;
   }
-  ElMessage.success("图片更新成功");
-  emit("success");
+  try {
+    const {
+      title,
+      region,
+      desc,
+      create_time: createTime,
+      picture_url: pictureUrl,
+    } = form.value;
+    const params = {
+      title,
+      region,
+      desc,
+      create_time: createTime.toString(),
+      picture_url: pictureUrl,
+    };
+    if (!props.isEdit) {
+      const data = await Api.Picture.createPicture(params);
+      ElMessage.success(`图片创建成功 pid:${data.pid}`);
+    } else {
+      const data = await Api.Picture.updatePicture({
+        pid: props.pictureInfo.pid,
+        ...params,
+      });
+      ElMessage.success(`图片更新成功 pid:${data.pid}`);
+    }
+    emit("success");
+  } catch (err) {
+    ElMessage.error(err.message);
+  }
 }
 </script>
 
