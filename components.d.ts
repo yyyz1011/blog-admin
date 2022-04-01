@@ -4,7 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ArticleCard: typeof import('./src/components/home/article-card/ArticleCard.vue')['default']
+    ArticleCard: typeof import('./src/components/home/github-card/GithubCard.vue')['default']
     ArticleListCard: typeof import('./src/components/article/article-list-card/ArticleListCard.vue')['default']
     CardPanel: typeof import('./src/components/card-panel/CardPanel.vue')['default']
     DialogArticleContent: typeof import('./src/components/article/dialog-article-content/DialogArticleContent.vue')['default']
@@ -36,6 +36,7 @@ declare module 'vue' {
     ElTag: typeof import('element-plus/es')['ElTag']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     ElUpload: typeof import('element-plus/es')['ElUpload']
+    GithubCard: typeof import('./src/components/home/github-card/GithubCard.vue')['default']
     HeaderNav: typeof import('./src/components/header-nav/HeaderNav.vue')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     NoData: typeof import('./src/components/no-data/NoData.vue')['default']

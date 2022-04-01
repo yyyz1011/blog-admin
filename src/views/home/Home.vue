@@ -4,7 +4,7 @@
     <TodoCard></TodoCard>
   </div>
   <div class="home-bottom">
-    <ArticleCard></ArticleCard>
+    <GithubCard></GithubCard>
     <ToolCard></ToolCard>
   </div>
 </template>

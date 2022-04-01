@@ -12,8 +12,6 @@
   "dependencies": {
     "@element-plus/icons-vue": "^1.1.1",
     "dayjs": "^1.10.8",
-    "echarts": "^5.3.1",
-    "echarts-wordcloud": "^2.0.0",
     "element-plus": "^2.1.0",
     "leaf-util": "^1.0.13",
     "md-editor-v3": "^1.11.4",
