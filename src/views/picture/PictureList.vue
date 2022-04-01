@@ -25,7 +25,6 @@
 import { Ref, ref, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { PictureFilled as IconPictureFilled } from "@element-plus/icons-vue";
-import { getFreeImg } from "@/networks";
 
 let dialogUploadVisible: Ref<boolean> = ref(false);
 
@@ -38,18 +37,7 @@ interface PictureListItem {
   modify_time: string;
 }
 let pictureList: Ref<PictureListItem[]> = ref([]);
-function getPictureList() {
-  pictureList.value = new Array(10).fill(null).map((item, index) => {
-    return {
-      id: `picture-item-${index}`,
-      title: `这是图片的标题${index}`,
-      region: "杭州",
-      url: getFreeImg({ width: 100, height: 100 }),
-      desc: "这是图片的介绍这是图片的介绍这是图片的片的是图片的介绍这是图片的介绍这是图片的介绍这是图片的介绍这是图片的介绍这是图片的介绍",
-      modify_time: new Date().getTime().toString(),
-    };
-  });
-}
+function getPictureList() {}
 function handleDelPicture(id: string) {
   ElMessage.success("删除成功");
   console.log("删除图片，id是", id);
