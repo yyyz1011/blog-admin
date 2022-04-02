@@ -58,7 +58,7 @@
             value-format="x"
           />
         </el-form-item>
-        <el-form-item label="图片介绍">
+        <el-form-item label="图片介绍" prop="desc">
           <el-input
             v-model="form.desc"
             type="textarea"
