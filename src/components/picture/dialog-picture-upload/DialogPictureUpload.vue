@@ -142,7 +142,17 @@ let fileList: Ref<any> = ref([]);
 
 function initPictureInfo() {
   const { isEdit, pictureInfo } = props;
-  if (!isEdit) return;
+  if (!isEdit) {
+    console.log(1)
+    form.value = {
+      title: "",
+      picture_url: "",
+      region: "",
+      create_time: "",
+      desc: "",
+    };
+    return;
+  }
   const {
     title,
     region,

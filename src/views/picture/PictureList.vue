@@ -20,6 +20,7 @@
     </template>
   </div>
   <DialogPictureUpload
+    v-if="dialogUploadVisible"
     :visible="dialogUploadVisible"
     @close="dialogUploadVisible = false"
     @success="uploadSuccess"
