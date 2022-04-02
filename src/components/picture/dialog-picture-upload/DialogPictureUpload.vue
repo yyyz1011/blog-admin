@@ -137,13 +137,14 @@ const rulesForm = reactive({
   create_time: [
     { required: true, message: "拍摄时间不能为空", trigger: "blur" },
   ],
+  desc: [{ required: true, message: "简介不能为空", trigger: "blur" }],
 });
 let fileList: Ref<any> = ref([]);
 
 function initPictureInfo() {
   const { isEdit, pictureInfo } = props;
   if (!isEdit) {
-    console.log(1)
+    console.log(1);
     form.value = {
       title: "",
       picture_url: "",
