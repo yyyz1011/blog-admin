@@ -10,13 +10,15 @@
       <template #header>
         <el-descriptions title="留言基本信息" direction="vertical">
           <el-descriptions-item label="账号">
-            {{ item.account }}
+            <span class="description-info">{{ item.account }}</span>
           </el-descriptions-item>
           <el-descriptions-item label="用户名">
-            {{ item.nick_name }}
+            <span class="description-info">{{ item.nick_name }}</span>
           </el-descriptions-item>
           <el-descriptions-item label="创建时间">
-            {{ dayjs(Number(item.create_time)).format("YYYY-MM-DD HH:mm") }}
+            <span class="description-info">
+              {{ dayjs(Number(item.create_time)).format("YYYY-MM-DD HH:mm") }}
+            </span>
           </el-descriptions-item>
           <template #extra>
             <el-button type="primary" @click="handleDelMessage(item.mid)"
@@ -71,5 +73,10 @@ async function handleDelMessage(mid: string) {
 <style scoped lang="scss">
 .message-card {
   margin: 16px;
+}
+
+.description-info {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
