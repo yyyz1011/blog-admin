@@ -46,3 +46,7 @@ export interface UpdatePictureReq {
 export interface DelPictureReq {
   pid: string;
 }
+
+export interface DelMessageReq {
+  mid: string;
+}

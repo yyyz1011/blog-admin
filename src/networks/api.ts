@@ -8,6 +8,7 @@ import {
   CreatePictureReq,
   UpdatePictureReq,
   DelPictureReq,
+  DelMessageReq,
 } from "@/networks/apiType";
 
 export default class Api {
@@ -39,5 +40,10 @@ export default class Api {
       Request.post("/p/update", params),
     delPicture: (params: DelPictureReq) => Request.post("/p/del", params),
     getPictureList: () => Request.get("/p/picture/list"),
+  };
+
+  public static Message = {
+    getMessageList: () => Request.get("/m/list"),
+    delMessage: (params: DelMessageReq) => Request.post("/m/del", params),
   };
 }
