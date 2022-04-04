@@ -46,4 +46,8 @@ export default class Api {
     getMessageList: () => Request.get("/m/list"),
     delMessage: (params: DelMessageReq) => Request.post("/m/del", params),
   };
+
+  public static Log = {
+    getLogList: () => Request.get("/l/list"),
+  };
 }
