@@ -30,12 +30,10 @@
           <el-upload
             ref="upload"
             class="upload"
-            :action="uploadSetting.uploadUrl"
-            :headers="uploadSetting.headers"
             :limit="1"
             list-type="picture"
+            :before-upload="handleBeforeUpload"
             :on-exceed="handleExceed"
-            :on-success="handleSuccess"
             :file-list="fileList"
           >
             <el-icon class="el-icon--upload"><IconUploadFilled /></el-icon>
@@ -85,6 +83,8 @@ import { UploadFilled as IconUploadFilled } from "@element-plus/icons-vue";
 import { baseUrl, Token } from "@/constants/common";
 import Api from "@/networks/api";
 import dayjs from "dayjs";
+import compressImg from "@/utils/compressImg";
+import axios from "axios";
 
 const emit = defineEmits(["close", "success"]);
 const props = defineProps({
@@ -175,12 +175,29 @@ onMounted(() => {
   initPictureInfo();
 });
 
+async function handleBeforeUpload(file: any) {
+  const data = await compressImg(file);
+  const formData = new FormData();
+  formData.append("file", data.file);
+  if (!sessionStorage.getItem(Token)) return false;
+  let config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      token: sessionStorage.getItem(Token),
+    },
+  };
+  try {
+    const resData = await axios.post(`${baseUrl}/c/upload`, formData, config);
+    form.value.picture_url = resData.data.data.url;
+  } catch {
+    ElMessage.error("上传出错，请检查~");
+  } finally {
+    return false;
+  }
+}
 function handleExceed(files: any) {
   upload.value.clearFiles();
   upload.value.handleStart(files[0]);
-}
-function handleSuccess(files: any) {
-  form.value.picture_url = files.data.url;
 }
 
 function handleClose() {
