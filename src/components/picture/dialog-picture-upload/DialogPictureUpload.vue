@@ -144,7 +144,6 @@ let fileList: Ref<any> = ref([]);
 function initPictureInfo() {
   const { isEdit, pictureInfo } = props;
   if (!isEdit) {
-    console.log(1);
     form.value = {
       title: "",
       picture_url: "",
@@ -189,6 +188,7 @@ async function handleBeforeUpload(file: any) {
   try {
     const resData = await axios.post(`${baseUrl}/c/upload`, formData, config);
     form.value.picture_url = resData.data.data.url;
+    fileList.value = [{ url: resData.data.data.url }];
   } catch {
     ElMessage.error("上传出错，请检查~");
   } finally {
